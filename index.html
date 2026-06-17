@@ -12,25 +12,54 @@
             font-family: 'Inter', sans-serif;
             font-weight: 700;
         }
-        .reveal h1 { color: #a855f7; font-size: 3em; margin-bottom: 20px; }
-        .reveal h2 { color: #e2e8f0; font-size: 1.8em; margin-bottom: 30px; }
+        .reveal h1 { 
+            background: linear-gradient(135deg, #d8b4fe, #a855f7, #6366f1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 3.8em; 
+            margin-bottom: 20px; 
+            filter: drop-shadow(0 0 20px rgba(168,85,247,0.3));
+        }
+        .reveal h2 { 
+            color: #f8fafc; 
+            font-size: 1.8em; 
+            margin-bottom: 30px; 
+            position: relative;
+            display: inline-block;
+        }
+        .reveal h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, #a855f7, transparent);
+            border-radius: 2px;
+        }
         .reveal p, .reveal li {
-            color: #94a3b8; 
+            color: #cbd5e1; 
             font-family: 'Inter', sans-serif;
             font-size: 0.85em;
-            line-height: 1.4;
+            line-height: 1.5;
         }
-        .reveal .accent { color: #a855f7; }
+        .reveal .accent { 
+            color: #c084fc; 
+            text-shadow: 0 0 15px rgba(192,132,252,0.4);
+            font-weight: 600;
+        }
         .reveal .credits {
             font-size: 0.5em;
             color: #64748b;
             margin-top: 40px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
         .reveal .flex-container {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 30px;
+            gap: 40px;
             width: 100%;
         }
         .reveal .col {
@@ -38,12 +67,19 @@
             text-align: left;
             min-width: 0;
         }
-        .reveal img {
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        .reveal img:not(.global-logo):not(.cover-logo) {
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.8), 0 0 30px rgba(168, 85, 247, 0.15);
             max-height: 400px;
             max-width: 100%;
             object-fit: contain;
+            border: 1px solid rgba(255,255,255,0.08);
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
         }
         .reveal ul {
             display: inline-block;
@@ -52,11 +88,34 @@
         }
         .reveal li { margin-bottom: 15px; }
         .highlight-box {
-            background: rgba(168, 85, 247, 0.1);
-            border: 1px solid rgba(168, 85, 247, 0.3);
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 20px;
+            background: rgba(168, 85, 247, 0.08);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-left: 4px solid #a855f7;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 25px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4), inset 0 0 20px rgba(168,85,247,0.05);
+            backdrop-filter: blur(8px);
+        }
+        
+        .global-logo {
+            position: absolute;
+            bottom: 30px;
+            left: 30px;
+            height: 35px;
+            z-index: 2000;
+            opacity: 0.6;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+            filter: drop-shadow(0 2px 8px rgba(0,0,0,0.6));
+        }
+        .reveal-overview .global-logo {
+            opacity: 0;
+        }
+        .cover-logo {
+            height: 55px;
+            margin-bottom: 25px;
+            filter: drop-shadow(0 4px 10px rgba(0,0,0,0.4));
         }
 
         /* Slide Badge for Overview Mode */
@@ -131,7 +190,11 @@
         <button id="btn-en" onclick="setLanguage('en')">EN</button>
     </div>
 
-    <div class="reveal">
+    <div class="reveal" style="background: radial-gradient(circle at center, #1e1b4b 0%, #020617 100%);">
+        
+        <!-- Global Logo (Visible on all slides except overview) -->
+        <img src="/Logo-Tutator-H-.svg" class="global-logo" alt="Tutator">
+
         <div class="slides">
 
             <!-- ================= Grupo 1 ================= -->
@@ -139,6 +202,7 @@
                 <!-- 1. Portada -->
                 <section>
                     <div class="slide-badge">1</div>
+                    <img src="/Logo-Tutator-H-.svg" class="cover-logo" alt="Tutator Logo">
                     <h1>UX Audit</h1>
                     <h3 class="es" style="color: #cbd5e1; font-weight: 500;">Captura automatizada de pantallas y análisis de consistencia visual.</h3>
                     <h3 class="en" style="color: #cbd5e1; font-weight: 500;">Automated screen capture and visual consistency analysis.</h3>
