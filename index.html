@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <title>Presentación - UX Audit Engine</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/night.min.css" id="theme">
+    <style>
+        .reveal h1, .reveal h2, .reveal h3 {
+            text-transform: none;
+            font-family: 'Inter', sans-serif;
+            font-weight: 700;
+        }
+        .reveal h1 { color: #a855f7; font-size: 3em; margin-bottom: 20px; }
+        .reveal h2 { color: #e2e8f0; font-size: 1.8em; margin-bottom: 30px; }
+        .reveal p, .reveal li {
+            color: #94a3b8; 
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85em;
+            line-height: 1.4;
+        }
+        .reveal .accent { color: #a855f7; }
+        .reveal .credits {
+            font-size: 0.5em;
+            color: #64748b;
+            margin-top: 40px;
+        }
+        .reveal .flex-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            width: 100%;
+        }
+        .reveal .col {
+            flex: 1;
+            text-align: left;
+            min-width: 0;
+        }
+        .reveal img {
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            max-height: 400px;
+            max-width: 100%;
+            object-fit: contain;
+        }
+        .reveal ul {
+            display: inline-block;
+            text-align: left;
+            width: 100%;
+        }
+        .reveal li { margin-bottom: 15px; }
+        .highlight-box {
+            background: rgba(168, 85, 247, 0.1);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        /* Slide Badge for Overview Mode */
+        .slide-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #a855f7, #6366f1);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 40px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            z-index: 9999;
+            opacity: 0;
+            transform: scale(0.1);
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            pointer-events: none;
+        }
+        
+        .reveal-overview .slide-badge {
+            opacity: 1;
+            transform: scale(1.5); /* Sized to look good inside overview */
+        }
+
+        /* Language Toggle Styles */
+        body.lang-es .en { display: none !important; }
+        body.lang-en .es { display: none !important; }
+        
+        .lang-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid #334155;
+            border-radius: 30px;
+            padding: 5px;
+            display: flex;
+            gap: 5px;
+            backdrop-filter: blur(5px);
+        }
+        .lang-toggle button {
+            background: transparent;
+            border: none;
+            color: #94a3b8;
+            padding: 5px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8em;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+        .lang-toggle button.active {
+            background: #a855f7;
+            color: white;
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+        }
+    </style>
+</head>
+<body class="lang-es">
+
+    <div class="lang-toggle">
+        <button id="btn-es" class="active" onclick="setLanguage('es')">ES</button>
+        <button id="btn-en" onclick="setLanguage('en')">EN</button>
+    </div>
+
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- ================= Grupo 1 ================= -->
+            <section>
+                <!-- 1. Portada -->
+                <section>
+                    <div class="slide-badge">1</div>
+                    <h1>UX Audit</h1>
+                    <h3 class="es" style="color: #cbd5e1; font-weight: 500;">Captura automatizada de pantallas y análisis de consistencia visual.</h3>
+                    <h3 class="en" style="color: #cbd5e1; font-weight: 500;">Automated screen capture and visual consistency analysis.</h3>
+                    <p class="es credits">Equipo de Diseño Tutator</p>
+                    <p class="en credits">Tutator Design Team</p>
+                </section>
+
+                <!-- 2. El problema actual -->
+                <section>
+                    <div class="slide-badge">2</div>
+                    <h2 class="es">El problema actual</h2>
+                    <h2 class="en">The current problem</h2>
+                    <p class="es">La <span class="accent">captura manual de pantallas</span> en procesos de análisis y documentación es un gran cuello de botella.</p>
+                    <p class="en">The <span class="accent">manual capture of screens</span> in analysis and documentation processes is a major bottleneck.</p>
+                    <div class="highlight-box">
+                        <p class="es" style="margin:0; text-align: center;">Actualmente, recopilar pantallas de un sistema suele ser un proceso lento, repetitivo, propenso a errores y completamente manual.</p>
+                        <p class="en" style="margin:0; text-align: center;">Currently, collecting system screens is often a slow, repetitive, error-prone, and completely manual process.</p>
+                    </div>
+                </section>
+
+                <!-- 3. Nuestra solución -->
+                <section>
+                    <div class="slide-badge">3</div>
+                    <h2 class="es">Nuestra solución</h2>
+                    <h2 class="en">Our solution</h2>
+                    <div class="flex-container">
+                        <div class="col">
+                            <p class="es">Escanea aplicaciones web, genera capturas automáticas de todas sus vistas y permite detectar inconsistencias visuales de UX/UI a escala.</p>
+                            <p class="en">It scans web applications, generates automatic captures of all their views, and allows detecting UX/UI visual inconsistencies at scale.</p>
+                        </div>
+                        <div class="col">
+                            <img src="/Screens app/UX-AUDIT-1.png" alt="Dashboard UX Audit">
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <!-- ================= Grupo 2 ================= -->
+            <section>
+                <!-- 4. Selección de sistemas y módulos -->
+                <section>
+                    <div class="slide-badge">4</div>
+                    <h2 class="es">Flujo 1: Selección de sistemas</h2>
+                    <h2 class="en">Flow 1: System Selection</h2>
+                    <div class="flex-container">
+                        <div class="col">
+                            <p class="es">El proceso comienza de forma simple. Ingresas la URL del sistema y el motor escanea la estructura principal para identificar módulos, pestañas y botones de acción clave.</p>
+                            <p class="en">The process starts simply. You enter the system URL and the engine scans the main structure to identify modules, tabs, and key action buttons.</p>
+                        </div>
+                        <div class="col">
+                            <img src="/Screens app/UX-AUDIT-2.png" alt="Selección de sistemas">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 5. Captura automatizada de pantallas -->
+                <section>
+                    <div class="slide-badge">5</div>
+                    <h2 class="es">Flujo 2: Captura Automatizada</h2>
+                    <h2 class="en">Flow 2: Automated Capture</h2>
+                    <div class="flex-container">
+                        <div class="col">
+                            <p class="es">El motor interactúa con el sistema (incluso en modales o pestañas anidadas) y toma capturas de pantalla de alta calidad de forma completamente desatendida y automática.</p>
+                            <p class="en">The engine interacts with the system (even in modals or nested tabs) and takes high-quality screenshots completely unattended and automatically.</p>
+                        </div>
+                        <div class="col">
+                            <img src="/Screens app/UX-AUDIT-3.png" alt="Proceso de captura">
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 6. Organización de pantallas -->
+                <section>
+                    <div class="slide-badge">6</div>
+                    <h2 class="es">Organización de pantallas</h2>
+                    <h2 class="en">Organization of screens</h2>
+                    <div class="flex-container">
+                        <div class="col">
+                            <p class="es">Todas las imágenes se etiquetan y organizan jerárquicamente. Se acabaron las carpetas desordenadas de "Captura de pantalla 1.png".</p>
+                            <p class="en">All images are labeled and organized hierarchically. No more messy folders of "Screenshot 1.png".</p>
+                            <p class="es">El resultado es una galería visual lista para ser analizada o compartida con el equipo.</p>
+                            <p class="en">The result is a visual gallery ready to be analyzed or shared with the team.</p>
+                        </div>
+                        <div class="col">
+                            <img src="/Screens app/UX-AUDIT-4-0.png" alt="Organización de pantallas">
+                        </div>
+                    </div>
+                </section>
+            </section>
+
+            <!-- ================= Grupo 3 ================= -->
+            <section>
+                <!-- 7. UX Audit -->
+                <section>
+                    <div class="slide-badge">7</div>
+                    <h2 class="es">Apoyo a procesos de UX Audit</h2>
+                    <h2 class="en">Support for UX Audit processes</h2>
+                    <p class="es">Las capturas generadas, junto con el <span class="accent">prompt de análisis que definimos</span>, permiten exportar fácilmente la información y utilizarla en cualquier agente de IA (como Gemini, ChatGPT o Claude).</p>
+                    <p class="en">The generated captures, along with the <span class="accent">analysis prompt we defined</span>, allow easy export of information to be used in any AI agent (like Gemini, ChatGPT or Claude).</p>
+                    <div class="highlight-box">
+                        <p class="es" style="margin:0;">Esto sirve para obtener reportes de UX Audit mucho más completos de forma externa, siendo este un excelente <strong>flujo complementario</strong>.</p>
+                        <p class="en" style="margin:0;">This serves to obtain much more complete UX Audit reports externally, making it an excellent <strong>complementary flow</strong>.</p>
+                    </div>
+                </section>
+
+                <!-- 8. Limitaciones actuales -->
+                <section>
+                    <div class="slide-badge">8</div>
+                    <h2 class="es">Limitaciones actuales</h2>
+                    <h2 class="en">Current limitations</h2>
+                    <ul>
+                        <li class="es">Actualmente <strong>no realiza un análisis profundo</strong> mediante APIs especializadas dentro de la misma herramienta.</li>
+                        <li class="en">It currently <strong>does not perform deep analysis</strong> using specialized APIs within the tool itself.</li>
+                        <li class="es">Integrar modelos o servicios externos nativamente implica costos y cuotas de API adicionales.</li>
+                        <li class="en">Natively integrating external models or services implies additional costs and API quotas.</li>
+                        <li class="es">Por ahora, su fortaleza principal es la <em>recolección y organización</em> de datos.</li>
+                        <li class="en">For now, its main strength is the <em>collection and organization</em> of data.</li>
+                    </ul>
+                </section>
+
+                <!-- 9. Posibles mejoras futuras -->
+                <section>
+                    <div class="slide-badge">9</div>
+                    <h2 class="es">Posibles mejoras futuras</h2>
+                    <h2 class="en">Possible future improvements</h2>
+                    <ul>
+                        <li class="es">Integración nativa (y opcional) con APIs de Visión (GPT, Gemini, Claude) para auditoría in-app.</li>
+                        <li class="en">Native (and optional) integration with Vision APIs (GPT, Gemini, Claude) for in-app auditing.</li>
+                        <li class="es">Exportación automatizada de reportes a PDF o plantillas de Figma.</li>
+                        <li class="en">Automated export of reports to PDF or Figma templates.</li>
+                        <li class="es">Soporte para detección de accesibilidad (WCAG) durante la captura.</li>
+                        <li class="en">Support for accessibility detection (WCAG) during capture.</li>
+                    </ul>
+                </section>
+            </section>
+
+            <!-- ================= Grupo 4 ================= -->
+            <section>
+                <!-- 10. Conclusiones -->
+                <section>
+                    <div class="slide-badge">10</div>
+                    <h2 class="es">Propuesta de valor principal</h2>
+                    <h2 class="en">Main value proposition</h2>
+                    <ul>
+                        <li class="es"><span class="accent">Reducir el tiempo</span> invertido en la captura manual de pantallas.</li>
+                        <li class="en"><span class="accent">Reduce time</span> spent on manual screen capture.</li>
+                        <li class="es"><span class="accent">Organizar automáticamente</span> las pantallas obtenidas.</li>
+                        <li class="en"><span class="accent">Automatically organize</span> the obtained screens.</li>
+                        <li class="es"><span class="accent">Facilitar la documentación</span> de sistemas, módulos y flujos.</li>
+                        <li class="en"><span class="accent">Facilitate the documentation</span> of systems, modules, and flows.</li>
+                        <li class="es"><span class="accent">Generar insumos visuales</span> listos para análisis posteriores.</li>
+                        <li class="en"><span class="accent">Generate visual assets</span> ready for subsequent analysis.</li>
+                        <li class="es"><span class="accent">Estandarizar el proceso</span> de recopilación de pantallas en la empresa.</li>
+                        <li class="en"><span class="accent">Standardize the process</span> of screen collection in the company.</li>
+                    </ul>
+                </section>
+
+                <!-- 11. Gracias -->
+                <section>
+                    <div class="slide-badge">11</div>
+                    <h1 class="es">Gracias</h1>
+                    <h1 class="en">Thank you</h1>
+                    <p class="es">Presiona <strong>ESC</strong> para ver la vista general o cierra la pestaña para volver a la herramienta.</p>
+                    <p class="en">Press <strong>ESC</strong> to see the overview or close the tab to return to the tool.</p>
+                </section>
+
+                <!-- 12. Placeholder para centrado perfecto de la cuadrícula -->
+                <section style="visibility: hidden; pointer-events: none;"></section>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            controls: true,
+            progress: true,
+            center: true,
+            width: 1024,
+            height: 768,
+            margin: 0.08,
+            navigationMode: 'linear',
+            transition: 'fade' 
+        });
+
+        function setLanguage(lang) {
+            document.body.classList.remove('lang-es', 'lang-en');
+            document.body.classList.add('lang-' + lang);
+            
+            document.getElementById('btn-es').classList.remove('active');
+            document.getElementById('btn-en').classList.remove('active');
+            document.getElementById('btn-' + lang).classList.add('active');
+            
+            setTimeout(() => {
+                Reveal.sync();
+            }, 100);
+        }
+    </script>
+</body>
+</html>
